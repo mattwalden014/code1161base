@@ -65,7 +65,8 @@ def loops_1c(number_of_items=5, symbol="#"):
     a string with exacly one symbol in it.
     E.g.: ['#', '#', '#', '#', '#']
     """
-    pass
+    my_misc_list = [symbol] * number_of_items
+    return my_misc_list
 
 
 def loops_2():
