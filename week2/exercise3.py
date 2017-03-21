@@ -53,7 +53,8 @@ def star_map():
     if it's even. Reuse the is odd function that you've already written.
     E.g.: ["!", "*", "!", "*", "!", "*", "!", "*", "!", "*"]
     """
-    pass
+    my_star_map = map(lambda x: "!" if x % 2 == 0 else "*", range(0, 10))
+    return my_star_map
 
 
 def loops_1c(number_of_items=5, symbol="#"):
