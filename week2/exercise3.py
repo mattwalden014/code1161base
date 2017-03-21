@@ -38,7 +38,11 @@ def loops_1a():
     return a list of 10 items, each one a string with exacly one star in it.
     E.g.: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*']
     """
-    pass
+    counter = 0
+    star_list = []
+    for counter in range(0, 10):
+        star_list.append('*')
+    return star_list
 
 
 def star_map():
