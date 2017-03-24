@@ -87,7 +87,14 @@ def loops_2():
             ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
           ]
     """
-    pass
+    counter = 0
+    star_list = []
+    star_matrix = []
+    for counter in range(0, 10):
+        star_list.append('*')
+    for counter in range(0, 10):
+        star_matrix.append(star_list)
+    return star_matrix
 
 
 def loops_3():
