@@ -243,7 +243,15 @@ def loops_7():
     This is a hard problem. Use lots of experimentation and draw
     lots of diagrams!
     """
-    pass
+    counter_vert = 0
+    star_list = []
+    star_matrix = []
+    for counter_vert in range(0, 5):
+        star_list = map(lambda x: " " if x > (4 + counter_vert)
+                        or x < (4 - counter_vert) else "*", range(0, 9))
+        star_matrix.append(star_list)
+        star_list = []
+    return star_matrix
 
 
 def lp(some_kind_of_list, exercise_name):
