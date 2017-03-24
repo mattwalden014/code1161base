@@ -136,7 +136,14 @@ def loops_4():
       ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     ]
     """
-    pass
+    counter = 0
+    num_list = []
+    num_matrix = []
+    for counter in range(0, 10):
+        num_list.append(str(counter))
+    for counter in range(0, 10):
+        num_matrix.append(num_list)
+    return num_matrix
 
 
 def loops_5():
