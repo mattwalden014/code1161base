@@ -177,7 +177,17 @@ def loops_5():
         "There are {} green bottles".format(8)
     you'll come to see the pros and cons of each over time.
     """
-    pass
+    counter_vert = 0
+    counter_horiz = 0
+    coord_list = []
+    coord_matrix = []
+    for counter_vert in range(0, 10):
+        for counter_horiz in range(0, 5):
+            coord_list.append('(i' + str(counter_vert) + ', j' +
+                              str(counter_horiz) + ')')
+        coord_matrix.append(coord_list)
+        coord_list = []
+    return coord_matrix
 
 
 def loops_6():
