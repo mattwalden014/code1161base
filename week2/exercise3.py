@@ -118,7 +118,16 @@ def loops_3():
     TIP: notice that this needs to to return strings of numbers,
          so call str(number) to cast.
     """
-    pass
+    counter_vert = 0
+    counter_horiz = 0
+    num_list = []
+    num_matrix = []
+    for counter_vert in range(0, 10):
+        for counter_horiz in range(0, 10):
+            num_list.append(str(counter_vert))
+        num_matrix.append(num_list)
+        num_list = []
+    return num_matrix
 
 
 def loops_4():
