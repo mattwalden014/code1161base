@@ -191,7 +191,16 @@ def loops_6():
     You can use a variable.
     TIP: look out for the starting condition.
     """
-    pass
+    counter_vert = 0
+    counter_horiz = 0
+    num_list = []
+    num_matrix = []
+    for counter_vert in range(0, 10):
+        for counter_horiz in range(0, counter_vert + 1):
+            num_list.append(str(counter_horiz))
+        num_matrix.append(num_list)
+        num_list = []
+    return num_matrix
 
 
 def loops_7():
