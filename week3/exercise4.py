@@ -2,7 +2,7 @@
 """Week 3, Exercise 4."""
 from __future__ import division
 from __future__ import print_function
-import math
+# import math
 # import time
 
 
@@ -27,7 +27,17 @@ def binary_search(low, high, actual_number):
       (You should remove them from the file, not comment them out, the
       tests aren't that smart yet.)
     """
-    pass
+    tries = 0
+    guess = int(round(high + low) / 2)
+    while guess != actual_number:
+        if guess < actual_number:
+            low = guess
+        else:
+            high = guess
+        guess = int(round(high + low) / 2)
+        tries = tries + 1
+    results = {"guess": guess, "tries": tries}
+    return results
 
 
 if __name__ == "__main__":
