@@ -30,6 +30,8 @@ def advancedGuessingGame():
     """
     low = not_number_rejector("Enter a lower bound as an integer: ")
     high = not_number_rejector("Enter an upper bound as an integer: ")
+    while high < low:
+        high = not_number_rejector("Upper bound too low: ")
     guess = super_asker(low, high)
     return guess
 
