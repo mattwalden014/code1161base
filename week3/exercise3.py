@@ -6,7 +6,7 @@ from __future__ import division
 from __future__ import print_function
 from exercise1 import not_number_rejector
 from exercise1 import super_asker
-import random
+# import random
 
 
 def advancedGuessingGame():
@@ -28,7 +28,10 @@ def advancedGuessingGame():
     Remember to think modular. Try to keep your functions small and single
     purpose if you can!
     """
-    pass
+    low = not_number_rejector("Enter a lower bound as an integer: ")
+    high = not_number_rejector("Enter an upper bound as an integer: ")
+    guess = super_asker(low, high)
+    return guess
 
 
 if __name__ == "__main__":

@@ -82,7 +82,7 @@ def not_number_rejector(message):
     """
     while True:
         try:
-            result = int(raw_input("Enter a number as an integer: "))
+            result = int(raw_input(message))
             return result
         except:
             print("Not an integer")
@@ -94,14 +94,15 @@ def super_asker(low, high):
     Combine stubborn_asker and not_number_rejector to make a function
     that does it all!
     """
-    question = raw_input("Enter a number between low and high: ")
+    message = "Enter a number between upper and lower bounds: "
+    question = not_number_rejector(message)
     while question > high or question < low:
-        while True:
-            try:
-                question = int(raw_input("Enter a num between low and high: "))
-                return question
-            except:
-                print("Not an integer")
+        if question < low:
+            message = "Number too low. Guess again dummy! "
+            question = not_number_rejector(message)
+        else:
+            message = "Number too high. Guess again dummy! "
+            question = not_number_rejector(message)
     return question
 
 
