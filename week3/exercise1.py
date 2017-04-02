@@ -96,7 +96,7 @@ def super_asker(low, high):
     """
     message = "Enter a number between upper and lower bounds: "
     question = not_number_rejector(message)
-    while question > high or question < low:
+    while question >= high or question <= low:
         if question < low:
             message = "Number too low. Guess again dummy! "
             question = not_number_rejector(message)
