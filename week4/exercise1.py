@@ -28,7 +28,12 @@ def success_is_relative():
     # this depends on excecution context. Take a look at your CWD and remember
     # that it changes.
     # print(path, CWD)
-    pass
+    path = "week1/pySuccessMessage.json"
+    mode = "r"
+    file_load = open(path, mode)
+    message = file_load.read()
+    message = message.strip()
+    return message
 
 
 def get_some_details():
@@ -48,11 +53,15 @@ def get_some_details():
          dictionaries.
     """
     json_data = open(LOCAL + "/lazyduck.json").read()
-
     data = json.loads(json_data)
-    return {"lastName":       None,
-            "password":       None,
-            "postcodePlusID": None
+    last_name = data["results"][0]["name"]["last"]
+    password_read = data["results"][0]["login"]["password"]
+    post_code = data["results"][0]["location"]["postcode"]
+    person_id = data["results"][0]["id"]["value"]
+    post_plus = int(post_code) + int(person_id)
+    return {"lastName":       last_name,
+            "password":       password_read,
+            "postcodePlusID": post_plus
             }
 
 
@@ -88,7 +97,26 @@ def wordy_pyramid():
     ]
     TIP: to add an argument to a URL, use: ?argName=argVal e.g. ?len=
     """
-    pass
+    url = "http://randomword.setgetgo.com/get.php?len="
+    pyramid = []
+    args_call = 3
+    while args_call <= 20:
+        url_print = url + str(args_call)
+        # print(url_print)
+        r = requests.get(url_print)
+        pyramid.append(r.text)
+        args_call = args_call + 2
+    args_call = 20
+    while args_call >= 3:
+        url_print = url + str(args_call)
+        # print(url_print)
+        r = requests.get(url_print)
+        pyramid.append(r.text)
+        args_call = args_call - 2
+    print(r.text)
+    print(pyramid)
+    print([len(w) for w in pyramid])
+    return pyramid
 
 
 def wunderground():
