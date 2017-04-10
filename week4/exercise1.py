@@ -131,7 +131,7 @@ def wunderground():
          variable and then future access will be easier.
     """
     base = "http://api.wunderground.com/api/"
-    api_key = "YOUR KEY - REGISTER TO GET ONE"
+    api_key = "c975f70d6c7d5637"
     country = "AU"
     city = "Sydney"
     template = "{base}/{key}/conditions/q/{country}/{city}.json"
@@ -139,11 +139,16 @@ def wunderground():
     r = requests.get(url)
     the_json = json.loads(r.text)
     obs = the_json['current_observation']
-
-    return {"state":           None,
-            "latitude":        None,
-            "longitude":       None,
-            "local_tz_offset": None}
+    tz_off = obs['local_tz_offset']
+    print(tz_off)
+    state = obs['display_location']['state']
+    print(state)
+    lat = obs['display_location']['latitude']
+    longit = obs['display_location']['longitude']
+    return {"state":           state,
+            "latitude":        lat,
+            "longitude":       longit,
+            "local_tz_offset": tz_off}
 
 
 def diarist():
@@ -159,7 +164,25 @@ def diarist():
     TIP: remember to commit 'lasers.pew' and push it to your repo, otherwise
          the test will have nothing to look at.
     """
-    pass
+    count = 0
+    laser_file = "week4/Trispokedovetiles(laser).gcode"
+    mode_read = "r"
+    laser_file_load = open(laser_file, mode_read)
+    content = laser_file_load.readlines()
+    for line in content:
+        if "M10 P1" in line:
+            count = count + 1
+    count = str(count)
+    out_file_path = "week4/lasers.pew"
+    mode_write = "w+"
+    out_file = open(out_file_path, mode_write)
+    out_file.write(count)
+    out_file.close()
+    print(count)
+    # return count
+
+
+diarist()
 
 
 if __name__ == "__main__":
