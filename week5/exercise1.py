@@ -216,15 +216,18 @@ def triangle_master(base,
     """Return a diagram, a dictionary, or both."""
     triangle_dictionary = get_triangle_facts(base, height, units="mm")
     diagram = tell_me_about_this_right_triangle(triangle_dictionary)
+    output = {"diagram": diagram, "facts": triangle_dictionary}
     if return_diagram and return_dictionary:
-        # return diagram
-        # return triangle_dictionary
-        None
+        output = {"diagram": diagram, "facts": triangle_dictionary}
+        return output
     elif return_diagram:
         return diagram
     elif return_dictionary:
+        output = {"facts": triangle_dictionary}
+        # print("This is the dictionary: ")
+        # print(triangle_dictionary)
         # return triangle_dictionary
-        None
+        return output
     else:
         print("You're an odd one, you don't want anything!")
 
@@ -239,28 +242,17 @@ def wordy_pyramid():
     return list_of_words_with_lengths(list_of_lengths)
 
 
-def not_number_rejector(message):
-    """Ask for a number repeatedly until actually given one.
-
-    Ask for a number, and if the response is actually NOT a number (e.g. "cow",
-    "six", "8!") then throw it out and ask for an actual number.
-    When you do get a number, return it.
-    """
-    while True:
-        try:
-            result = int(raw_input(message))
-            return result
-        except:
-            print("Not an integer")
-
-
 def get_a_word_of_length_n(length):
     """Get a word of specified length."""
-    baseURL = "http://www.setgetgo.com/randomword/get.php?len="
-    url = baseURL + str(length)
-    r = requests.get(url)
-    message = r.text
-    return message
+    if type(length) is int:
+        if length >= 3:
+            baseURL = "http://www.setgetgo.com/randomword/get.php?len="
+            url = baseURL + str(length)
+            r = requests.get(url)
+            message = r.text
+            return message
+    else:
+        return None
 
 
 def list_of_words_with_lengths(list_of_lengths):
