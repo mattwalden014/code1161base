@@ -27,12 +27,14 @@ you'll need to figure out for yourself what to do.
 from __future__ import division
 from __future__ import print_function
 import math
+import requests
 
 
 # This is a terrible function. The rest of the functions in this file do a
 # much better job of what it's trying to do. Once you've has a little look,
 # move on, and eventually delete this function. (And this comment!)
 def do_bunch_of_bad_things():
+    """Run Ben's initial test of doing bad stuff."""
     print("Getting ready to start in 9")
     print("Getting ready to start in 8")
     print("Getting ready to start in 7")
@@ -66,14 +68,25 @@ def countdown(message, start, stop, completion_message):
 
     Push it to a list and return the list at the end.
     """
-    for i in range(start, start - stop):
-        if i != stop:
-            print(message + i)
-        else:
-            print(completion_message)
+    output_list = []
+    print(start)
+    start = int(start)
+    print(stop)
+    stop = int(stop)
+    if stop < start:
+        step = -1
+    else:
+        step = 1
+    i = start
+    while i != stop:
+        print(message + str(i))
+        output_list.append(message + str(i))
+        i = i + step
+    output_list.append(completion_message)
+    return output_list
 
 
-countdown("Starting in ", 9, 0, "You did it!")
+countdown("Getting ready to start in ", 9, 0, "Let's go!")
 
 
 # TRIANGLES
@@ -184,55 +197,64 @@ def tell_me_about_this_right_triangle(facts_dictionary):
     facts = pattern.format(**facts_dictionary)
     if facts_dictionary["aspect"] == "tall":
         output = tall.format(**facts_dictionary)
-        print(output + pattern)
-        return output + pattern
+        print(output + facts)
+        return output + facts
     elif facts_dictionary["aspect"] == "wide":
         output = wide.format(**facts_dictionary)
-        print(output + pattern)
-        return output + pattern
+        print(output + facts)
+        return output + facts
     else:
         output = equal.format(**facts_dictionary)
-        print(output + pattern)
-        return output + pattern
+        print(output + facts)
+        return output + facts
 
 
 def triangle_master(base,
                     height,
                     return_diagram=False,
                     return_dictionary=False):
+    """Return a diagram, a dictionary, or both."""
+    triangle_dictionary = get_triangle_facts(base, height, units="mm")
+    diagram = tell_me_about_this_right_triangle(triangle_dictionary)
     if return_diagram and return_dictionary:
-        return None
+        # return diagram
+        # return triangle_dictionary
+        None
     elif return_diagram:
-        return None
+        return diagram
     elif return_dictionary:
-        return None
+        # return triangle_dictionary
+        None
     else:
         print("You're an odd one, you don't want anything!")
 
 
 def wordy_pyramid():
-    import requests
-    baseURL = "http://www.setgetgo.com/randomword/get.php?len="
-    pyramid_list = []
+    """Create a word pyramid with functions."""
+    list_of_lengths = []
     for i in range(3, 21, 2):
-        url = baseURL + str(i)
-        r = requests.get(url)
-        message = r.text
-        pyramid_list.append(message)
+        list_of_lengths.append(i)
     for i in range(20, 3, -2):
-        url = baseURL + str(i)
-        r = requests.get(url)
-        message = r.text
-        pyramid_list.append(message)
-    return pyramid_list
+        list_of_lengths.append(i)
+    return list_of_words_with_lengths(list_of_lengths)
 
 
 def get_a_word_of_length_n(length):
-    pass
+    """Get a word of specified length."""
+    baseURL = "http://www.setgetgo.com/randomword/get.php?len="
+    url = baseURL + str(length)
+    r = requests.get(url)
+    message = r.text
+    return message
 
 
 def list_of_words_with_lengths(list_of_lengths):
-    pass
+    """Get a list of lengths to call words."""
+    pyramid_list = []
+    for i in list_of_lengths:
+        message = get_a_word_of_length_n(i)
+        pyramid_list.append(message)
+    return pyramid_list
 
 
 if __name__ == "__main__":
