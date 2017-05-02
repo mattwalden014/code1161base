@@ -22,6 +22,7 @@ print(1 + 1, "is smaller than", 7 * 0.5, "is",
 
 
 def usefulFunction():
+    """Run Ben's useful function."""
     print(os.getcwd())
 
 
